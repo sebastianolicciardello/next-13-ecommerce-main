@@ -6,6 +6,7 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
+  output = "./generated/client"
 }
 
 model Product {
@@ -15,3 +16,4 @@ model Product {
   price      Decimal
   image      String
 }
+

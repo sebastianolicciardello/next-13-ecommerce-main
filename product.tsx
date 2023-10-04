@@ -29,9 +29,6 @@ export default function Product({ product }: ProductProps) {
         </div>
         <div className="flex items-center">
           <p className="text-xl mr-1"></p>
-          {Array.from({ length: rating.rate }, (_, index) => (
-            <AiFillStar key={index} className="text-yellow-500 text-xl" />
-          ))}
         </div>  
                 <button
             onClick={handleFavoriteClick}

@@ -1,36 +1,24 @@
-const { PrismaClient, Prisma } = require('@prisma/client');
+import { Product } from './generated/client/index.d';
+import {Product as ProductFetchType } from '../types/product';
+import { Product as ProductType } from '@prisma/client';
 
-const products = [
-    {
-      name: 'Cool helmet.',
-      description: 'A nice helmet to wear on your head',
-      price: new Prisma.Decimal(19.95),
-      image: '/images/helmet.jpg',
-    },
-    {
-      name: 'Grey T-Shirt',
-      description: 'A nice shirt that you can wear on your body',
-      price: new Prisma.Decimal(22.95),
-      image: '/images/shirt.jpg',
-    },
-    {
-      name: 'Socks',
-      description: 'Cool socks that you can wear on your feet',
-      price: new Prisma.Decimal(12.95),
-      image: '/images/socks.jpg',
-    },
-    {
-      name: 'Sweatshirt',
-      description: 'Cool sweatshirt that you can wear on your body',
-      price: new Prisma.Decimal(12.95),
-      image: '/images/sweatshirt.jpg',
-    },
-  ];
+const { PrismaClient, Prisma } = require('@prisma/client');
 
   const prisma = new PrismaClient();
 
   const load = async () => {
     try {
+      const res = await fetch("https://fakestoreapi.com/products");
+      const products = await res.json();
+
+      const formattedProducts = products.map((product: ProductFetchType) => ({
+        name: product.title.substring(0, 200),
+        image: product.image.substring(0, 200),
+        price: product.price,
+        description: product.description.substring(0, 100),
+      }));
+
+
       await prisma.product.deleteMany();
       console.log("Deleted records in product table");
   
@@ -38,8 +26,9 @@ const products = [
       console.log("reset product auto increment to 1");
   
       await prisma.product.createMany({
-        data: products,
+        data: formattedProducts
       });
+
       console.log("Added product data");
     } catch (e) {
       console.error(e);

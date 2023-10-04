@@ -1,47 +1,38 @@
 "use client"
 
-import { useState } from "react";
-import { AiOutlineHeart, AiFillHeart, AiFillStar } from "react-icons/ai";
-import { Product } from "../types/Product";
+import {BsFillTrashFill} from "react-icons/bs";
+import { Product as ProductType } from "@/prisma/generated/client";
 
 interface ProductProps {
-  product: Product
+  product: ProductType
 }
 
 export default function Product({ product }: ProductProps) {
-  const [isFavorite, setIsFavorite] = useState(false);
-  const { title, image, price, rating } = product;
+  const { name, image, price} = product;
 
-  const handleFavoriteClick = () => {
-    setIsFavorite(!isFavorite);
-  };
+  async function deleteProduct(){
+    await fetch("/backend?id="+product.id);
+  }
 
   return (
     <div className="max-w-xs">
-      <h2 className="text-2xl font-bold mb-2">{title}</h2>
+      <h2 className="text-2xl font-bold mb-2">{name}</h2>
       <div className="flex justify-center mb-2">
-        <img src={image} alt={title} className="h-64 object-contain" />
+        <img src={image} alt={name} className="h-64 object-contain" />
       </div>
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center">
-          <p className="text-2xl font-semibold">${price}</p>
+          <p className="text-2xl font-semibold">${price.toString()}</p>
 
         </div>
         <div className="flex items-center">
           <p className="text-xl mr-1"></p>
-          {Array.from({ length: rating.rate }, (_, index) => (
-            <AiFillStar key={index} className="text-yellow-500 text-xl" />
-          ))}
         </div>  
                 <button
-            onClick={handleFavoriteClick}
+            onClick={deleteProduct}
             className="flex items-center justify-center bg-transparent border border-transparent rounded-full p-3 ml-2"
           >
-            {isFavorite ? (
-              <AiFillHeart className="text-red-500 text-3xl" />
-            ) : (
-              <AiOutlineHeart className="text-gray-500 text-3xl" />
-            )}
+            <BsFillTrashFill className="text-red-500 text-3xl" />
           </button>
       </div>
     </div>
