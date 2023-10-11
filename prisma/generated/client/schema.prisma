@@ -12,7 +12,7 @@ generator client {
 model Product {
   id         Int   @id @default(autoincrement())
   name       String
-  description String
+  description String @db.Text
   price      Decimal
   image      String
 }

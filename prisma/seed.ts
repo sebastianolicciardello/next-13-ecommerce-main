@@ -12,10 +12,10 @@ const { PrismaClient, Prisma } = require('@prisma/client');
       const products = await res.json();
 
       const formattedProducts = products.map((product: ProductFetchType) => ({
-        name: product.title.substring(0, 200),
-        image: product.image.substring(0, 200),
+        name: product.title,
+        image: product.image,
         price: product.price,
-        description: product.description.substring(0, 100),
+        description: product.description,
       }));
 
 
