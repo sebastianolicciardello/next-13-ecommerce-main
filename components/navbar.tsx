@@ -9,6 +9,7 @@ import { GrClose } from 'react-icons/gr'
 function Navbar() {
   const Links = [
     { name: "HOME", href: "/" },
+    { name: "ADMIN", href: "/admin" },
     { name: "PRODUCTS", href: "/products" },
     { name: "PRICING", href: "/pricing" },
     { name: "CONTACT", href: "/contact" },
@@ -19,15 +20,15 @@ function Navbar() {
 
 
   return (
-    <div className='shadow-md w-full fixed top-0 left-0'>
+    <div className='w-full fixed top-0 left-0 bg-white bg-opacity-100'>
       <div className='md:flex items-center justify-between bg-white py-4 md:px-10 px-7'>
-        <div className='font-bold text-2xl cursor-pointer flex items-center font-[Poppins] text-gray-800'>
+        <div className='font-bold text-2xl cursor-pointer flex items-center font-[Poppins] text-gray-800 bg-white'>
           <span className='text-3xl mr-2 text-indigo-600'>
           <AiTwotoneShop />
           </span>
           <span className='text-1xl text-indigo-600 font-[Poppins] font-light'>ECOMMERCE</span>
         </div>
-        <div onClick={() => setOpen(!open)} className='text-3xl absolute right-8 top-6 cursor-pointer md:hidden '>
+        <div onClick={() => setOpen(!open)} className='text-3xl absolute right-8 top-6 cursor-pointer md:hidden bg-white'>
           {open ? <GrClose /> : <GiHamburgerMenu />}
         </div>
         <ul className= {` md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full 

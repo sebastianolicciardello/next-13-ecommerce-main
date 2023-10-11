@@ -1,40 +1,22 @@
 "use client"
-
-import {BsFillTrashFill} from "react-icons/bs";
 import { Product as ProductType } from "@/prisma/generated/client";
 
 interface ProductProps {
   product: ProductType
 }
 
-export default function Product({ product }: ProductProps) {
-  const { name, image, price} = product;
 
-  async function deleteProduct(){
-    await fetch("/backend?id="+product.id);
-  }
+export default function Product({product}: ProductProps) {
 
   return (
-    <div className="max-w-xs">
-      <h2 className="text-2xl font-bold mb-2">{name}</h2>
-      <div className="flex justify-center mb-2">
-        <img src={image} alt={name} className="h-64 object-contain" />
-      </div>
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center">
-          <p className="text-2xl font-semibold">${price.toString()}</p>
+    <div className="px-6 py-4 transition-colors duration-200 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">
+            <p className="text-lg font-medium text-gray-800 dark:text-gray-100">{product.name}</p>
+            <h4 className="mt-2 text-4xl font-semibold text-gray-800 dark:text-gray-100">${product.price.toString()}</h4>
+            <p className="mt-4 text-gray-500 dark:text-gray-300">{product.description}</p>
 
-        </div>
-        <div className="flex items-center">
-          <p className="text-xl mr-1"></p>
-        </div>  
-                <button
-            onClick={deleteProduct}
-            className="flex items-center justify-center bg-transparent border border-transparent rounded-full p-3 ml-2"
-          >
-            <BsFillTrashFill className="text-red-500 text-3xl" />
-          </button>
-      </div>
-    </div>
+            <button className="w-full px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+              Choose plan
+            </button>
+          </div>
   );
 }
