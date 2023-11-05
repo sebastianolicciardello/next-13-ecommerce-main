@@ -11,12 +11,14 @@ export default async function CreatePage(){
         const productDescription = data.get('description') as string;
         const productImage = data.get('image') as string;
         const productPrice = data.get('price') as string;
+        const productStripePriceId = data.get('stripePriceId') as string;
         await prisma.product.create({
             data: {
                 name: productName,
                 description: productDescription,
                 image: productImage,
-                price: parseInt(productPrice)
+                price: parseInt(productPrice),
+                stripePriceId: productStripePriceId
             }
         })
         revalidatePath('/admin')
@@ -63,6 +65,15 @@ export default async function CreatePage(){
                             type="number"
                             id="price"
                             name="price"
+                            className="rounded-md border border-gray-300 p-2 w-full"
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <label htmlFor="stripePriceId" className="block text-gray-700">Stripe Price Id</label>
+                        <input
+                            id="stripePriceId"
+                            name="stripePriceId"
                             className="rounded-md border border-gray-300 p-2 w-full"
                         />
                     </div>

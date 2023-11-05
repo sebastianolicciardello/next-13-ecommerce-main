@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npx prisma generate && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -15,10 +15,14 @@
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@ilihub/decimal": "^1.0.2",
-    "@prisma/client": "^5.3.1",
+    "@prisma/client": "^5.6.0-dev.17",
+    "@stripe/react-stripe-js": "^2.3.1",
+    "@stripe/stripe-js": "^2.1.10",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
+    "@types/stripe": "^8.0.417",
     "autoprefixer": "10.4.15",
+    "decimal.js": "^3.0.0",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "flowbite": "^1.8.1",
@@ -26,14 +30,15 @@
     "ionicons": "^7.1.2",
     "next": "^13.5.5",
     "postcss": "^8.4.31",
-    "prisma": "^5.3.1",
     "react": "^18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
+    "stripe": "^14.1.0",
     "tailwindcss": "3.3.3"
   },
   "devDependencies": {
     "@types/node": "^20.8.2",
+    "prisma": "^5.6.0-dev.17",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   }

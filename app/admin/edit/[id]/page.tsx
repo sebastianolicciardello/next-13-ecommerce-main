@@ -38,7 +38,7 @@ export default async function EditPage({
             }
         })
         revalidatePath('/admin')
-        redirect('/admin', RedirectType.replace)
+        redirect('/admin')
     };
 
     if (!product){

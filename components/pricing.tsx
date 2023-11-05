@@ -1,6 +1,6 @@
 "use client"
 
-import { Product as ProductType } from "@/prisma/generated/client";
+import { Product as ProductType } from "prisma/prisma-client";
 import Product from "./product";
 
 interface ProductProps {
@@ -15,8 +15,8 @@ export default function Pricing({products}: ProductProps) {
       <div className="container px-6 py-8 mx-auto">
         <div className="sm:flex sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100">Simple, transparent pricing</h2>
-            <p className="mt-4 text-gray-500 dark:text-gray-400">No Contracts. No surorise fees.</p>
+            <h2 className="text-3xl font-bold text-gray-800 ">Simple, transparent pricing</h2>
+            <p className="mt-4 text-gray-500 ">No Contracts. No surorise fees.</p>
           </div>
         </div>
 

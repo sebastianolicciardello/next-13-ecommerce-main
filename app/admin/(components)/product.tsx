@@ -1,7 +1,7 @@
 "use client"
 
 import {BsFillTrashFill} from "react-icons/bs";
-import { Product as ProductType } from "@/prisma/generated/client";
+import { Product as ProductType } from "prisma/prisma-client";
 import {AiFillEdit} from "react-icons/ai";
 
 interface ProductProps {

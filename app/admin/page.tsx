@@ -2,14 +2,14 @@
 
 import React, { useEffect, useState } from 'react'
 import { prisma } from "@/lib/prisma";
-import { Product as ProductType } from "@/prisma/generated/client";
+import { Product as ProductType } from "prisma/prisma-client";
 import AdminProduct from "@/app/admin/(components)/product";
 import { deleteProduct } from './(components)/actions';
 import { AiFillPlusSquare } from 'react-icons/ai';
 
 
 
-export const getProducts = async () => {
+ const getProducts = async () => {
     return await prisma.product.findMany();
 }
 
